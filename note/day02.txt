@@ -1,0 +1,49 @@
+数据库操作：
+
+    Mysql数据库 + pymsql
+
+    Django开发：不直接用pymsql去操作数据库，可更加简单的操作数据库
+
+        ORM框架： 翻译的过程，编写代码的时候更加简洁
+            如何实现对数据库的增删改查
+
+            1. 安装第三方模块：mysqlclient
+                可通过包下载，需要注意的时候python版本信息
+
+            可以帮助我们做两件事：
+                1. 创建和修改、删除数据库中的表 【无法创建数据库】
+                2. 操作表中的数据  【不用写sql语句】
+
+
+            一、自己创建数据库
+                启动mysql
+                自带的工具创建一个数据库
+            二、django连接数据库
+                修改配置脚本：settings.py
+                    进行配置和修改
+            三、基于Django操作表
+                增
+                删
+                改
+                查
+                在models.py中进行代码编写工作
+
+                执行命令：
+                    python manage.py makemigrations
+                        执行时，提示mysqlclient模组出现问题，办法：卸载后，下载对应的mysqlclient版本后，使用pip install client_varsion.whl
+                            命令安装成功，之后执行无问题
+                    python manage.py migrate
+                        执行后报错，发现本机上已经安装过一个mysql数据里，但root的密码忘了，故将安装的两款mysql都卸载了，
+                        历史安装的使用卸载程序卸载，最新安装的需要
+                            1. 先停止服务
+                            2. 删除对应的文件夹，以及环境变量中的配置字段
+                            3. 删除注册表
+                            4. 在命令行中执行 sc delete mysql彻底删除mysql相关的服务
+                        重新安装mysql8.0，使用官方下载的msi程序安装全套工具。
+                            安装好后，依旧报错
+                                1. ssl问题：需要修改my.ini中的mysqld配置，新增skip_ssl
+                                    修改后需要重启mysql服务
+                                2. mysql账号密码的编码问题：
+                                    需要命令行进入mysql数据库中对密码字段的类型进行修改
+                                3. 重新执行后无问题。
+                        至此，两句manage命令运行完成。

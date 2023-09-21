@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模板语法</title>
+</head>
+<body>
+    <h1>模板语法的学习</h1>
+    <img src="{% static 'img/img01.png' %}"\>
+    <div>{{ n1 }}</div>
+    <div>{{ n2.0 }}</div>
+    <div>{{ n2.1 }}</div>
+    <div>{{ n2.2 }}</div>
+    <!-- 循环展示 -->
+    <div>
+        {% for item in n2 %}
+            <span>{{ item }}</span>
+        {% endfor %}
+    </div>
+
+    <div>{{ n3.name }}</div>
+    <div>{{ n3.age }}</div>
+    <div>{{ n3.roler }}</div>
+
+    <div>
+        {% for item in n3.keys %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </div>
+    <div>
+        {% for item in n3.values %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </div>
+    <div>
+        {% for k,v in n3.items %}
+            <li>{{ k }} = {{ v }}</li>
+        {% endfor %}
+    </div>
+
+<hr/>
+{{ n4.1 }}
+    {{ n4.1.name }}
+    {{ n4.1.age }}
+    {{ n4.1.roler }}
+<hr/>
+<!-- 条件语句 -->
+{% if n1 == "郭超" %}
+    <h1>大大</h1>
+{% elif n1 == "滴滴滴" %}
+    <h1>大24134大</h1>
+{% else %}
+    <h1>asdfasf </h1>
+{% endif %}
+</body>
+</html>

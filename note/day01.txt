@@ -1,0 +1,85 @@
+默认的结构:
+    mysite:
+    |-- manage.py               [项目管理、启动、创建app、数据管理]    【常常用】
+    |-- mysite
+        |-- __init___.py
+        |__ settings.py         [项目配置]             【常常操作】
+        |-- urls.py             [URL和函数的对应关系]   【常常操作】
+        |-- asgi.py             【接收网络请求】        【不要动】
+        |-- wsgi.py             【接收网络请求】        【不要动】
+
+APP:
+    -项目
+        - app: 用户管理     【表结构、函数、HTML魔板、CSS】
+        - app: 订单管理
+        - app: 后台管理
+        - app: 网站
+        - app: API
+
+注意：我们开发比较简洁，用不到多app，一般情况下，项目用不到
+
+# 创建app
+python manage.py startapp app名称
+|-- APP01
+|-- __init__.py
+    |-- admin.py                【固定，不用动】 django默认提供了admin后台管理
+    |-- apps.py                 【固定，不用动】
+    |-- migrations
+        |-- __init__.py
+    |-- models.py               【】
+    |-- tests.py
+    |-- views.py
+
+
+# 快速上手
+一、确保app已注册，在settings.py的 INSTALLED_APPS 字典中添加创建的app的类名。
+
+二、编写url和视图函数的对应关系 【在urls.py中编写】
+
+三、编写views.py
+
+四、启动
+    命令行启动
+        python manage.py runserver
+    pycharm启动
+
+
+再写一个页面
+
+    -- url --> 函数
+    -- 视图 -->
+
+
+templates
+    如果需要返回一个html，那么需要使用render方法
+    如果配置中添加创建项目是的默认template的路径，那么会优先去该路径下寻找，如果没有则会根据app的注册顺序进行查找
+开发过程中一般将
+
+
+静态文件：
+    1. 在app路径下创建static文件夹
+        css
+        js
+        img
+        plugins
+    2. 模板
+        template
+            app中使用renden方法，模板文件的查找顺序
+            如果在django中配置tamplate的路径，并且存在template文件夹，那么会优先去该路径下查找，然后再根据app的注册顺序进行查找
+            如果未配置，则会根据app的注册顺序进行查找
+    3. 引用静态文件
+        在html文件顶部 添加 导入静态文件夹的命令   {% load static %}
+        然后在各个需要导入静态文件的位置使用 {% static 'img/img01.png' %} 即可
+
+django中的模板语法
+    本质上：在HTML中写一些占位符  {{ 占位符 }}
+
+视图函数的render内部
+    1. 读取含有模板语法的HTML文件
+    2. 内部进行渲染（模板语法执行并替换数据）
+    3. 最终得到，只包含HTML标签的字符串
+    4. 将渲染（替换）完成的字符串返还给用户浏览器
+
+案例：伪联通消息中心
+    结合爬虫
+
